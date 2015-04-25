@@ -1,28 +1,27 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+功能主要是用户管理、用户状态还有网站的状态。
 
-Things you may want to cover:
+### 用户管理
 
-* Ruby version
+我直接用 Devise 来实现了，Email 不作为主要的验证字段，改用 username 进行验证。
 
-* System dependencies
+### 用户状态
 
-* Configuration
+用户状态分为登录和未登录的。
+- 未登录的用户需要显示当前浏览时间，我直接用 JavaScript 记录页面加载完毕以后的时间，然后定时更新页面上的显示。
+- 登陆的用户，在跳出页面的时候，发送 ajax 给 server，来公知这次的在线时长。
 
-* Database creation
+### 网站的状态
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+主要有两个属性，分别是登录和未登录用户的人数。
+所有用户在页面加载完成还有跳转出当前页面以后，都会发送请求给 Server 来更新对应的属性。
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+##可改进的地方
+
+- 可以把我现在的分别跟登录和未登录两种用户的API合并成一个，直接在 Server 来判断修改什么属性。
+- JavaScript 的部分需要重构一下。
+- SiteState 有很多重复的地方，可以优化一下。
+- 因为没有配置密码找回等功能，应该去除对应的 Devise 模块
+
