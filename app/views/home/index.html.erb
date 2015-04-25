@@ -1,14 +1,19 @@
 <% if current_user.present? %>
   <%= link_to t('session.sign_out'), destroy_user_session_path, method: :delete %>
+  <div data-id="<%= current_user.id %>" id="logined-text">
+    <%= t('home_text.logined', username: current_user.username, login_count: current_user.sign_in_count) %>
+    <%= current_user.sign_in_time.to_s + t('home_text.minute') %>
+  </div>
+
 <% else %>
   <%= link_to t('session.sign_in'), new_user_session_path %>
-<% end %>
 
-<p><%= t('home_text.logined', username: "test", login_count: 10) %> 0 <%= t('home_text.minute') %></p>
-<div>
-  <span><%= t('home_text.unlogined') %></span>
-  <span id="online-time">0</span>
-  <span><%= t('home_text.minute') %></span>
-</div>
+  <div>
+    <span><%= t('home_text.unlogined') %></span>
+    <span id="online-time">0</span>
+    <span><%= t('home_text.minute') %></span>
+  </div>
+
+<% end %>
 
 <p><%= t('home_text.site_state', logined_count: 10, unlogined_count: 10) %></p>

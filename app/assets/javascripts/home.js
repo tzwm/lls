@@ -4,15 +4,34 @@
 $(function() {
   var visited_time = $.now();
 
+  var getOnlineTime = function() {
+    return Math.floor(($.now() - visited_time) / 1000 / 60);
+  };
+
   $(window).unload(function() {
-    var now = $.now();
+    var container = $('#logined-text');
+    if (!container.length) {
+      return;
+    }
+
+    var sign_in_time = getOnlineTime();
+
+    $.ajax({
+      method: "post",
+      url: "/users/add_sign_in_time",
+      data: {
+        sign_in_time: sign_in_time
+      },
+      async : false
+    });
   });
 
 
   var setOnlineTime = function() {
     var container = $('#online-time');
-    var onlineTime = ($.now() - visited_time) / 1000 / 60;
-    container.text(Math.floor(onlineTime));
+    if (container.length) {
+      container.text(getOnlineTime());
+    }
   };
 
   setInterval(setOnlineTime, 1000);
