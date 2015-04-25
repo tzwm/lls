@@ -4,6 +4,16 @@ class SiteState < ActiveRecord::Base
     unsign_in_user_count: "unsign_in_user_count"
   }
 
+  def self.current_sign_user_count
+    ss = SiteState.where(state_name: SiteState::STATE_TYPE[:sign_in_user_count]).first
+    ss.blank? ? 0 : ss.value.to_i
+  end
+
+  def self.current_unsign_user_count
+    ss = SiteState.where(state_name: SiteState::STATE_TYPE[:unsign_in_user_count]).first
+    ss.blank? ? 0 : ss.value.to_i
+  end
+
   def self.add_sign_in_user_count
     ss = find_user_count :sign_in_user_count
     ss.value = (ss.value.to_i + 1).to_s

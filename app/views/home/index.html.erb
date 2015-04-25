@@ -16,4 +16,4 @@
 
 <% end %>
 
-<p><%= t('home_text.site_state', logined_count: 10, unlogined_count: 10) %></p>
+<p><%= t('home_text.site_state', logined_count: @sign_in_user_count, unlogined_count: @unsign_in_user_count) %></p>
