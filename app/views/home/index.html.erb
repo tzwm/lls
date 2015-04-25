@@ -4,6 +4,11 @@
   <%= link_to t('session.sign_in'), new_user_session_path %>
 <% end %>
 
-<p><%= t('home_text.logined', username: "test", login_count: 10, login_time: 10) %></p>
-<p><%= t('home_text.unlogined', login_time: 10) %></p>
+<p><%= t('home_text.logined', username: "test", login_count: 10) %> 0 <%= t('home_text.minute') %></p>
+<div>
+  <span><%= t('home_text.unlogined') %></span>
+  <span id="online-time">0</span>
+  <span><%= t('home_text.minute') %></span>
+</div>
+
 <p><%= t('home_text.site_state', logined_count: 10, unlogined_count: 10) %></p>
