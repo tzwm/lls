@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   post "site_state/unsign_in_user" => "site_state#add_unsign_in_user"
   delete "site_state/unsign_in_user" => "site_state#delete_unsign_in_user"
 
+  resource :api do
+    get "site_state/current_sign_in_user_count" => "site_state#current_sign_in_user_count"
+    get "site_state/current_unsign_in_user_count" => "site_state#current_unsign_in_user_count"
+  end
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

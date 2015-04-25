@@ -30,4 +30,12 @@ class SiteStateController < ApplicationController
       render json: {status: "error"}
     end
   end
+
+  def current_sign_in_user_count
+    render json: {current_sign_in_user_count: SiteState.current_sign_user_count}
+  end
+
+  def current_unsign_in_user_count
+    render json: {current_unsign_in_user_count: SiteState.current_unsign_user_count}
+  end
 end
