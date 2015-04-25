@@ -3,16 +3,40 @@
 
 $(function() {
   var visited_time = $.now();
+  var signContainer = $('#logined-text');
+
+  if (signContainer.length) {
+    $.ajax({
+      method: "post",
+      url: "/site_state/sign_in_user"
+    });
+  } else {
+    $.ajax({
+      method: "post",
+      url: "/site_state/unsign_in_user"
+    });
+  }
 
   var getOnlineTime = function() {
     return Math.floor(($.now() - visited_time) / 1000 / 60);
   };
 
   $(window).unload(function() {
-    var container = $('#logined-text');
-    if (!container.length) {
+    if (!signContainer.length) {
+      $.ajax({
+        method: "delete",
+        url: "/site_state/unsign_in_user",
+        async : false
+      });
+      
       return;
     }
+
+    $.ajax({
+      method: "delete",
+      url: "/site_state/sign_in_user",
+      async : false
+    });
 
     var sign_in_time = getOnlineTime();
 

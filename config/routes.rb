@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     post 'users/add_sign_in_time' => "users#add_sign_in_time"
   end
 
+  post "site_state/sign_in_user" => "site_state#add_sign_in_user"
+  delete "site_state/sign_in_user" => "site_state#delete_sign_in_user"
+  post "site_state/unsign_in_user" => "site_state#add_unsign_in_user"
+  delete "site_state/unsign_in_user" => "site_state#delete_unsign_in_user"
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
