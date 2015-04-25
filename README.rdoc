@@ -23,5 +23,7 @@
 - 可以把我现在的分别跟登录和未登录两种用户的API合并成一个，直接在 Server 来判断修改什么属性。
 - JavaScript 的部分需要重构一下。
 - SiteState 有很多重复的地方，可以优化一下。
-- 因为没有配置密码找回等功能，应该去除对应的 Devise 模块
-
+- 因为没有配置密码找回等功能，应该去除对应的 Devise 模块。
+- SiteState 应该主要用 cache 来做。
+- 用户在线人数，可以用 WebSocket 来实现，但我对 Ruby 的 WebSocket 不太熟悉(之前用的都是 socket.io)，所以没有这样写。
+- 测试用例
