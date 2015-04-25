@@ -1,3 +1,9 @@
-<p><%= t('text_logined', username: "test", login_count: 10, login_time: 10) %></p>
-<p><%= t('text_unlogined', login_time: 10) %></p>
-<p><%= t('site_state', logined_count: 10, unlogined_count: 10) %></p>
+<% if current_user.present? %>
+  <%= link_to t('session.sign_out'), destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to t('session.sign_in'), new_user_session_path %>
+<% end %>
+
+<p><%= t('home_text.logined', username: "test", login_count: 10, login_time: 10) %></p>
+<p><%= t('home_text.unlogined', login_time: 10) %></p>
+<p><%= t('home_text.site_state', logined_count: 10, unlogined_count: 10) %></p>
